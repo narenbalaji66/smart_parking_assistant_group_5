@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "author": "Smart Parking Assistant",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 200, "left": 450, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 500, "left": 300, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "us1",
+      "top": -132.9,
+      "left": 111.1,
+      "attrs": { "distance": "400" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "us2",
+      "top": -120,
+      "left": 400,
+      "attrs": { "distance": "400" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "us3",
+      "top": -120,
+      "left": 700,
+      "attrs": { "distance": "400" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "ir_entry",
+      "top": 120,
+      "left": 40,
+      "attrs": { "color": "blue", "label": "Entry Gate (A1)" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "ir_exit",
+      "top": 240,
+      "left": 40,
+      "attrs": { "color": "orange", "label": "Exit Gate (A2)" }
+    },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr", "top": 400, "left": 20, "attrs": {} },
+    { "type": "wokwi-piezo-buzzer", "id": "bz", "top": 320, "left": 230, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_g1", "top": 80, "left": 140, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led_r1", "top": 80, "left": 180, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led_g2", "top": 80, "left": 240, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led_r2", "top": 80, "left": 280, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led_g3", "top": 80, "left": 340, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led_r3", "top": 80, "left": 380, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led_dim",
+      "top": 400,
+      "left": 240,
+      "attrs": { "color": "yellow", "label": "Dim LED" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_g1",
+      "top": 140,
+      "left": 130,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_r1",
+      "top": 140,
+      "left": 170,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_g2",
+      "top": 140,
+      "left": 230,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_r2",
+      "top": 140,
+      "left": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_g3",
+      "top": 140,
+      "left": 330,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_r3",
+      "top": 140,
+      "left": 370,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_dim",
+      "top": 460,
+      "left": 230,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "uno:5V", "us1:VCC", "red", [ "v0" ] ],
+    [ "uno:5V", "us2:VCC", "red", [ "v0" ] ],
+    [ "uno:5V", "us3:VCC", "red", [ "v0" ] ],
+    [ "uno:5V", "lcd:VCC", "red", [ "v0" ] ],
+    [ "uno:5V", "ldr:VCC", "red", [ "v0" ] ],
+    [ "uno:GND.1", "us1:GND", "black", [ "v0" ] ],
+    [ "uno:GND.1", "us2:GND", "black", [ "v0" ] ],
+    [ "uno:GND.1", "us3:GND", "black", [ "v0" ] ],
+    [ "uno:GND.1", "lcd:GND", "black", [ "v0" ] ],
+    [ "uno:GND.1", "bz:2", "black", [ "v0" ] ],
+    [ "uno:GND.1", "ldr:GND", "black", [ "v0" ] ],
+    [ "uno:GND.1", "ir_entry:1.l", "black", [ "v0" ] ],
+    [ "uno:GND.1", "ir_exit:1.l", "black", [ "v0" ] ],
+    [ "uno:2", "us1:TRIG", "green", [ "v0" ] ],
+    [ "uno:2", "us2:TRIG", "green", [ "v0" ] ],
+    [ "uno:2", "us3:TRIG", "green", [ "v0" ] ],
+    [ "uno:3", "us1:ECHO", "green", [ "v0" ] ],
+    [ "uno:5", "us2:ECHO", "green", [ "v0" ] ],
+    [ "uno:7", "us3:ECHO", "green", [ "v0" ] ],
+    [ "uno:4", "r_dim:1", "orange", [ "v0" ] ],
+    [ "r_dim:2", "led_dim:A", "orange", [ "v0" ] ],
+    [ "uno:GND.2", "led_dim:C", "black", [ "v0" ] ],
+    [ "uno:8", "r_g1:1", "green", [ "v0" ] ],
+    [ "r_g1:2", "led_g1:A", "green", [ "v0" ] ],
+    [ "uno:GND.2", "led_g1:C", "black", [ "v0" ] ],
+    [ "uno:11", "r_r1:1", "red", [ "v0" ] ],
+    [ "r_r1:2", "led_r1:A", "red", [ "v0" ] ],
+    [ "uno:GND.2", "led_r1:C", "black", [ "v0" ] ],
+    [ "uno:9", "r_g2:1", "green", [ "v0" ] ],
+    [ "r_g2:2", "led_g2:A", "green", [ "v0" ] ],
+    [ "uno:GND.2", "led_g2:C", "black", [ "v0" ] ],
+    [ "uno:12", "r_r2:1", "red", [ "v0" ] ],
+    [ "r_r2:2", "led_r2:A", "red", [ "v0" ] ],
+    [ "uno:GND.2", "led_r2:C", "black", [ "v0" ] ],
+    [ "uno:10", "r_g3:1", "green", [ "v0" ] ],
+    [ "r_g3:2", "led_g3:A", "green", [ "v0" ] ],
+    [ "uno:GND.2", "led_g3:C", "black", [ "v0" ] ],
+    [ "uno:13", "r_r3:1", "red", [ "v0" ] ],
+    [ "r_r3:2", "led_r3:A", "red", [ "v0" ] ],
+    [ "uno:GND.2", "led_r3:C", "black", [ "v0" ] ],
+    [ "uno:A0", "bz:1", "purple", [ "v0" ] ],
+    [ "uno:A1", "ir_entry:2.l", "blue", [ "v0" ] ],
+    [ "uno:A2", "ir_exit:2.l", "orange", [ "v0" ] ],
+    [ "uno:A3", "ldr:AO", "gold", [ "v0" ] ],
+    [ "uno:A4", "lcd:SDA", "blue", [ "v0" ] ],
+    [ "uno:A5", "lcd:SCL", "yellow", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
